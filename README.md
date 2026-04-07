@@ -84,8 +84,23 @@ deloitte-multi-cloud-security-lab/
 ├── day09-cicd-github-actions-azure-devops/
 ├── day10-operations-ir-and-capstone/
 └── assets/
-🏗️ High-Level Architecture
-✅ Prerequisites Checklist
+```
+
+## 🏗️ High-Level Architecture
+
+```mermaid
+flowchart TD
+    A[Users / Branch Offices / Remote Engineers] --> B[Ingress Load Balancer]
+    B --> C[Hub Network]
+    C --> D[Firewall / Security Inspection Layer]
+    D --> E[Spoke Networks]
+    E --> F[Applications and Services]
+    D --> G[Logging / Monitoring / SIEM]
+    C --> H[Automation Pipeline]
+    H --> I[Terraform / Bicep / CloudFormation]
+```
+
+## ✅ Prerequisites Checklist
 
 Before starting this class, make sure you have:
 
@@ -109,7 +124,7 @@ Before starting this class, make sure you have:
 
  At least one cloud account or sandbox subscription
 
-🎓 Learning Outcomes
+## 🎓 Learning Outcomes
 
 By the end of this bootcamp, you should be able to:
 
@@ -129,7 +144,7 @@ Create documentation and runbooks like a real consulting engineer
 
 Present a capstone architecture aligned to a Fortune 50 enterprise environment
 
-📘 Learning Style
+## 📘 Learning Style
 
 This course is intentionally written in a:
 
@@ -157,7 +172,7 @@ Troubleshooting notes
 
 Key takeaways
 
-🚦 Progress Tracker
+## 🚦 Progress Tracker
 
  Day 01 completed
 
@@ -179,7 +194,7 @@ Key takeaways
 
  Day 10 completed
 
-🔥 Capstone Outcome
+## 🔥 Capstone Outcome
 
 At the end of the course, this repository will contain a complete portfolio-grade multi-cloud network and security engineering lab that demonstrates practical experience in:
 
@@ -199,7 +214,7 @@ DevSecOps integration
 
 Enterprise troubleshooting
 
-📌 Next Step
+## 📌 Next Step
 
 Start with Day 01:
 
