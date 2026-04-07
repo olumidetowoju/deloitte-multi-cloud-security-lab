@@ -86,6 +86,8 @@ deloitte-multi-cloud-security-lab/
 └── assets/
 ```
 
+---
+
 ## 🏗️ High-Level Architecture
 
 ```mermaid
@@ -99,6 +101,8 @@ flowchart TD
     C --> H[Automation Pipeline]
     H --> I[Terraform / Bicep / CloudFormation]
 ```
+
+---
 
 ## ✅ Prerequisites Checklist
 
@@ -124,6 +128,8 @@ Before starting this class, make sure you have:
 
  At least one cloud account or sandbox subscription
 
+---
+
 ## 🎓 Learning Outcomes
 
 By the end of this bootcamp, you should be able to:
@@ -143,6 +149,8 @@ Integrate network security into CI/CD workflows
 Create documentation and runbooks like a real consulting engineer
 
 Present a capstone architecture aligned to a Fortune 50 enterprise environment
+
+---
 
 ## 📘 Learning Style
 
@@ -172,6 +180,8 @@ Troubleshooting notes
 
 Key takeaways
 
+---
+
 ## 🚦 Progress Tracker
 
  Day 01 completed
@@ -194,6 +204,8 @@ Key takeaways
 
  Day 10 completed
 
+---
+
 ## 🔥 Capstone Outcome
 
 At the end of the course, this repository will contain a complete portfolio-grade multi-cloud network and security engineering lab that demonstrates practical experience in:
@@ -213,6 +225,8 @@ IaC automation
 DevSecOps integration
 
 Enterprise troubleshooting
+
+---
 
 ## 📌 Next Step
 
