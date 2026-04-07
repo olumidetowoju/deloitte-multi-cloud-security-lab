@@ -46,7 +46,11 @@ flowchart TD
     C --> D[Firewall / Security Layer]
     D --> E[Spoke Networks]
     E --> F[Applications]
-🧰 Prerequisites
+```
+
+---
+
+## 🧰 Prerequisites
 
 Ensure you have:
 
@@ -60,16 +64,25 @@ Ensure you have:
 
  Basic networking knowledge (CIDR, subnets, routing)
 
-🧪 Lab Step 1 — Verify Installed Tools
+---
+
+## 🧪 Lab Step 1 — Verify Installed Tools
 
 Run:
 
+```
 terraform -v
 az version
 aws --version
 gcloud version
 git --version
-🔧 Lab Step 2 — Install Missing Tools
+```
+
+---
+
+## 🔧 Lab Step 2 — Install Missing Tools
+
+```
 Install Terraform
 sudo apt update
 sudo apt install -y unzip
@@ -82,7 +95,11 @@ Install AWS CLI
 sudo apt install awscli -y
 Install Google Cloud CLI
 sudo apt install google-cloud-cli -y
-🔐 Lab Step 3 — Authenticate to Cloud Providers
+```
+
+---
+
+## 🔐 Lab Step 3 — Authenticate to Cloud Providers
 Azure
 az login
 az account show
@@ -105,7 +122,10 @@ aws sts get-caller-identity
 GCP
 gcloud auth login
 gcloud config list
-🧠 Key Concept — Identity is the Control Plane
+
+---
+
+## 🧠 Key Concept — Identity is the Control Plane
 
 In enterprise environments:
 
@@ -117,7 +137,9 @@ GCP → IAM
 
 👉 If identity is misconfigured, network security fails.
 
-🌐 Lab Step 4 — Create IP Addressing Plan
+---
+
+## 🌐 Lab Step 4 — Create IP Addressing Plan
 
 Design your network ranges:
 
@@ -129,6 +151,7 @@ AWS Spoke:      10.11.0.0/16
 
 GCP Hub:        10.20.0.0/16
 GCP Spoke:      10.21.0.0/16
+
 🧠 Why This Matters
 
 Prevent overlapping IP ranges
@@ -137,7 +160,9 @@ Enable hybrid connectivity later
 
 Support scalable architecture
 
-🧪 Lab Step 5 — Create Architecture File
+---
+
+## 🧪 Lab Step 5 — Create Architecture File
 nano ../../docs/architecture/day01-architecture.md
 
 Paste:
@@ -151,16 +176,23 @@ flowchart TD
     C --> D[Firewall]
     D --> E[Spoke Network]
     E --> F[Application]
+```
 
 ---
 
 ## 💾 Save and Push Changes
 
-```bash
+bash
+
 git add .
+
 git commit -m "Add Day 01 lab"
+
 git push
-✅ Validation Checklist
+
+---
+
+## ✅ Validation Checklist
 
  Terraform installed and working
 
@@ -176,7 +208,10 @@ git push
 
  Changes pushed to GitHub
 
-🚨 Troubleshooting
+---
+
+## 🚨 Troubleshooting
+
 Terraform not found
 terraform -v
 
@@ -194,7 +229,9 @@ Project exists
 
 Terms accepted
 
-🎯 Key Takeaways
+---
+
+## 🎯 Key Takeaways
 
 Network security = traffic control + inspection
 
@@ -206,7 +243,9 @@ Terraform = repeatable infrastructure
 
 Documentation = engineering maturity
 
-🚀 Next Step
+---
+
+## 🚀 Next Step
 
 ➡️ Proceed to Day 02 — Azure Hub-Spoke + Firewall
 
