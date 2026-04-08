@@ -205,35 +205,35 @@ THEN block + log
 ---
 
 ## 🚨 Troubleshooting
-Traffic not flowing
-Check routing
-Check firewall rules
-Check NAT
-Firewall blocking legitimate traffic
-Review policy order
-Check logs
-High latency
-Check inspection overhead
-Scale firewall instances
+- Traffic not flowing
+- Check routing
+- Check firewall rules
+- Check NAT
+- Firewall blocking legitimate traffic
+- Review policy order
+- Check logs
+- High latency
+- Check inspection overhead
+- Scale firewall instances
 
 ---
 
 ## ✅ Validation Checklist
- Understand vendor firewall role
- Understand centralized architecture
- Understand policy management
- Understand App-ID concept
- Understand threat prevention
- Understand routing integration
+- Understand vendor firewall role
+- Understand centralized architecture
+- Understand policy management
+- Understand App-ID concept
+- Understand threat prevention
+- Understand routing integration
 
 ---
  
 ## 🎯 Key Takeaways
-Vendor firewalls = enterprise-grade security
-Centralized control is critical
-Policy design is more important than deployment
-Traffic inspection must be enforced
-Cloud-native ≠ enough for enterprise
+- Vendor firewalls = enterprise-grade security
+- Centralized control is critical
+- Policy design is more important than deployment
+- Traffic inspection must be enforced
+- Cloud-native ≠ enough for enterprise
 
 ---
 
@@ -243,6 +243,6 @@ Cloud-native ≠ enough for enterprise
 
 You will:
 
-Build reusable infrastructure
-Automate deployments
-Standardize multi-cloud environments
+- Build reusable infrastructure
+- Automate deployments
+- Standardize multi-cloud environments
