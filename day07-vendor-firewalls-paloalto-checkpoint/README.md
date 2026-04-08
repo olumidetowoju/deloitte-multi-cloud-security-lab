@@ -2,6 +2,25 @@
 
 ---
 
+## 🎯 Objective
+
+Understand and design **enterprise firewall architectures** using:
+- Palo Alto VM-Series (Panorama, Prisma concepts)
+- Check Point CloudGuard
+
+By the end of this lab, you will:
+- Understand vendor firewalls vs cloud-native firewalls
+- Design centralized firewall architectures
+- Learn policy management at scale
+- Understand enterprise inspection patterns
+- Map real-world Deloitte-style deployments
+
+---
+
+## 🧠 Concept (Think Like an Architect)
+
+### 🛡️ Analogy: Airport Security Command Center
+
 - Firewall = Security officer
 - Panorama / Management = Security command center
 - Policies = Rules of entry
