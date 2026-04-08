@@ -41,17 +41,27 @@ flowchart TD
     D --> E[Approval Gate]
     E --> F[Terraform Apply]
     F --> G[Cloud Infrastructure]
-🧠 CI/CD Stages
-Stage	Purpose
-Validate	Check syntax
-Plan	Preview changes
-Approve	Manual review
-Apply	Deploy infrastructure
-🧪 Lab Step 1 — Create GitHub Actions Directory
+```
+
+---
+
+## 🧠 CI/CD Stages
+| Stage | Purpose |
+|-----------|-------|
+| Validate | Check syntax |
+| Plan | Preview changes |
+| Approve | Manual review |
+| Apply | Deploy infrastructure |
+
+---
+
+### 🧪 Lab Step 1 — Create GitHub Actions Directory
 mkdir -p .github/workflows
-🧪 Lab Step 2 — Create Pipeline File
+
+### 🧪 Lab Step 2 — Create Pipeline File
 nano .github/workflows/terraform.yml
-📄 GitHub Actions Pipeline
+
+### 📄 GitHub Actions Pipeline
 name: Terraform CI/CD
 
 on:
@@ -86,7 +96,8 @@ jobs:
       # Optional Apply Step (disable for safety)
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve
-🔐 Lab Step 3 — Configure Secrets
+
+### 🔐 Lab Step 3 — Configure Secrets
 
 Go to GitHub:
 
@@ -94,32 +105,34 @@ Settings → Secrets → Actions
 
 Add:
 
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-ARM_CLIENT_ID
-ARM_CLIENT_SECRET
-ARM_SUBSCRIPTION_ID
-ARM_TENANT_ID
-GCP credentials (if needed)
-🧠 Key Concept — Secure Pipelines
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- ARM_CLIENT_ID
+- ARM_CLIENT_SECRET
+- ARM_SUBSCRIPTION_ID
+- ARM_TENANT_ID
+- GCP credentials (if needed)
+
+### 🧠 Key Concept — Secure Pipelines
 
 👉 NEVER hardcode credentials
 👉 ALWAYS use secrets
 
-🧪 Lab Step 4 — Trigger Pipeline
+### 🧪 Lab Step 4 — Trigger Pipeline
 git add .
 git commit -m "Add CI/CD pipeline"
 git push
 
 👉 This triggers GitHub Actions automatically
 
-🧪 Lab Step 5 — View Pipeline
+### 🧪 Lab Step 5 — View Pipeline
 
 Go to GitHub:
 
-Click Actions tab
-Watch pipeline execution
-🧠 Key Concept — Shift Left Security
+- Click Actions tab
+- Watch pipeline execution
+
+### 🧠 Key Concept — Shift Left Security
 
 Security happens:
 
@@ -127,18 +140,20 @@ BEFORE deployment (not after)
 
 Examples:
 
-Terraform validation
-Policy checks
-Static analysis
-🔥 Azure DevOps (Concept)
+- Terraform validation
+- Policy checks
+- Static analysis
+
+### 🔥 Azure DevOps (Concept)
 
 Pipeline stages:
 
-Build
-Test
-Deploy
-Approvals
-🧪 Example Azure DevOps Pipeline
+- Build
+- Test
+- Deploy
+- Approvals
+
+### 🧪 Example Azure DevOps Pipeline
 trigger:
 - main
 
@@ -149,7 +164,8 @@ steps:
 - script: terraform init
 - script: terraform plan
 - script: terraform apply
-🧠 Advanced Concept — Approval Gates
+
+### 🧠 Advanced Concept — Approval Gates
 
 Enterprise flow:
 
@@ -157,46 +173,62 @@ Dev → Plan → Security Review → Approval → Deploy
 
 👉 Prevents unauthorized changes
 
-🧠 DevSecOps Integration
-Area	Tool
-IaC	Terraform
-CI/CD	GitHub Actions
-Security	Policies + Scanning
-Monitoring	SIEM
-🧪 Lab Step 6 — Add Branch Protection (Concept)
-Require PR approval
-Require pipeline success
-Block direct pushes to main
-🚨 Troubleshooting
-Pipeline fails at init
-Check Terraform path
-Check working directory
-Auth errors
-Verify secrets
-Check permissions
-Plan fails
-Syntax issues
-Missing variables
-✅ Validation Checklist
- GitHub Actions workflow created
- Pipeline runs successfully
- Terraform init works
- Terraform validate works
- Secrets configured
- Pipeline visible in GitHub
-🎯 Key Takeaways
-CI/CD = automation backbone
-GitHub Actions = powerful pipeline tool
-Terraform integrates seamlessly
-Security must be embedded early
-Pipelines reduce human error
-🚀 Next Step
+### 🧠 DevSecOps Integration
+| Area | Purpose |
+|-----------|-------|
+| IaC | Terraform |
+| CI/CD | GitHub Actions |
+| Security | Policies + Scanning |
+| Monitoring | SIEM |
+
+---
+
+### 🧪 Lab Step 6 — Add Branch Protection (Concept)
+- Require PR approval
+- Require pipeline success
+- Block direct pushes to main
+
+---
+
+## 🚨 Troubleshooting
+- Pipeline fails at init
+- Check Terraform path
+- Check working directory
+- Auth errors
+- Verify secrets
+- Check permissions
+- Plan fails
+- Syntax issues
+- Missing variables
+
+---
+
+## ✅ Validation Checklist
+- GitHub Actions workflow created
+- Pipeline runs successfully
+- Terraform init works
+- Terraform validate works
+- Secrets configured
+- Pipeline visible in GitHub
+
+---
+
+## 🎯 Key Takeaways
+- CI/CD = automation backbone
+- GitHub Actions = powerful pipeline tool
+- Terraform integrates seamlessly
+- Security must be embedded early
+- Pipelines reduce human error
+
+---
+
+## 🚀 Next Step
 
 ➡️ Day 10 — Operations, Incident Response & Capstone
 
 You will:
 
-Troubleshoot real issues
-Build runbooks
-Simulate incidents
-Present final architecture
+- Troubleshoot real issues
+- Build runbooks
+- Simulate incidents
+- Present final architecture
