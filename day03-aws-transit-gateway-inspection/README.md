@@ -39,26 +39,43 @@ flowchart TD
     C --> E[Spoke VPC 2]
     D --> F[Workloads]
     E --> G[Workloads]
-🧱 Lab Architecture Design
-Component	CIDR
-Inspection VPC	10.10.0.0/16
-Spoke VPC 1	10.11.0.0/16
-Spoke VPC 2	10.12.0.0/16
-Region	us-east-1
-🧪 Lab Step 1 — Create VPCs
-Inspection VPC
+```
+
+---
+
+## 🧱 Lab Architecture Design
+
+| Component | CIDR |
+|-----------|-------|
+| Inspection VPC | 10.10.0.0/16 |
+| Spoke VPC 1 | 10.11.0.0/16 |
+| Spoke VPC 2 | 10.12.0.0/16 |
+| Region | us-east-1 |
+
+---
+
+### 🧪 Lab Step 1 — Create VPCs
+
+#### Inspection VPC
+
 aws ec2 create-vpc \
   --cidr-block 10.10.0.0/16
-Spoke VPC 1
+
+#### Spoke VPC 1
+
 aws ec2 create-vpc \
   --cidr-block 10.11.0.0/16
-Spoke VPC 2
+
+#### Spoke VPC 2
+
 aws ec2 create-vpc \
   --cidr-block 10.12.0.0/16
-🧪 Lab Step 2 — Create Transit Gateway
+
+### 🧪 Lab Step 2 — Create Transit Gateway
 aws ec2 create-transit-gateway \
   --description "clab-tgw"
-🧪 Lab Step 3 — Attach VPCs to TGW
+
+### 🧪 Lab Step 3 — Attach VPCs to TGW
 
 👉 Replace IDs accordingly
 
@@ -75,14 +92,16 @@ Spoke VPC 1
 
 Spoke VPC 2
 
-🧪 Lab Step 4 — Create Subnets
+### 🧪 Lab Step 4 — Create Subnets
 
 Example:
 
 aws ec2 create-subnet \
   --vpc-id <VPC_ID> \
   --cidr-block 10.10.1.0/24
-🧪 Lab Step 5 — Configure Route Tables
+
+### 🧪 Lab Step 5 — Configure Route Tables
+
 Key Concept
 
 👉 AWS does NOT automatically route like Azure
@@ -94,6 +113,7 @@ aws ec2 create-route \
   --route-table-id <ROUTE_TABLE_ID> \
   --destination-cidr-block 0.0.0.0/0 \
   --transit-gateway-id <TGW_ID>
+
 🧠 Critical Concept — Centralized Inspection
 
 In AWS:
@@ -109,28 +129,38 @@ Palo Alto / Check Point
 👉 Traffic flow:
 
 Spoke → TGW → Inspection VPC → Firewall → Internet
-🧪 Lab Step 6 — Deploy Test EC2 Instance
+
+### 🧪 Lab Step 6 — Deploy Test EC2 Instance
+
 aws ec2 run-instances \
   --image-id ami-0c02fb55956c7d316 \
   --count 1 \
   --instance-type t2.micro \
   --subnet-id <SUBNET_ID>
-🧪 Lab Step 7 — Validate Connectivity
+
+### 🧪 Lab Step 7 — Validate Connectivity
 
 Check instance:
 
 aws ec2 describe-instances
+
 🔥 Azure vs AWS (Important Interview Section)
-Feature	Azure	AWS
-Hub Routing	Built-in	Requires TGW
-Peering	Simple	Limited
-Routing	Automatic	Manual
-Firewall Placement	Native hub	Inspection VPC
-Complexity	Lower	Higher
+
+| Feature | Azure | AWS |
+|-----------|-------|-----|
+| Hub Routing | Built-in | Requires TGW |
+| Peering | Simple | Limited |
+| Routing | Automatic | Manual |
+| Firewall Placement | Native hub | Inspection VPC |
+| Complexity | Lower | Higher |
+
 
 👉 This is a VERY common interview discussion.
 
-🚨 Troubleshooting
+---
+
+## 🚨 Troubleshooting
+
 No connectivity
 
 Check:
@@ -148,7 +178,9 @@ NACLs
 
 Route Tables
 
-✅ Validation Checklist
+---
+
+## ✅ Validation Checklist
 
  VPCs created
 
@@ -164,7 +196,9 @@ Route Tables
 
  Connectivity verified
 
-🎯 Key Takeaways
+---
+
+## 🎯 Key Takeaways
 
 AWS networking = explicit control
 
@@ -176,7 +210,9 @@ Routing tables = critical control point
 
 More complex than Azure → more flexible
 
-🚀 Next Step
+---
+
+## 🚀 Next Step
 
 ➡️ Day 04 — GCP Hub-and-Spoke + Cloud Armor
 
