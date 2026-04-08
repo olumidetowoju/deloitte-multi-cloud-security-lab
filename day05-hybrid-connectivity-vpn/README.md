@@ -39,29 +39,43 @@ flowchart TD
     C --> D[Firewall]
     D --> E[Spoke Networks]
     E --> F[Applications]
-🧱 Lab Design
-Component	CIDR
-On-Prem Network	192.168.0.0/16
-Azure Hub	10.0.0.0/16
-AWS Hub	10.10.0.0/16
-GCP Hub	10.20.0.0/16
-🧠 Types of Hybrid Connectivity
-Type	Description
-Site-to-Site VPN	Network-to-network tunnel
-Point-to-Site VPN	User-to-network
-ExpressRoute (Azure)	Private dedicated connection
-Direct Connect (AWS)	Private dedicated connection
-Interconnect (GCP)	Private dedicated connection
-🧪 Lab Step 1 — Simulate On-Prem Network
+```
+
+---
+
+## 🧱 Lab Design
+| Component | CIDR |
+|-----------|-------|
+| On-Prem Network | 192.168.0.0/16 |
+| Azure Hub | 10.0.0.0/16 |
+| AWS Hub | 10.10.0.0/16 |
+| GCP Hub | 10.20.0.0/16 |
+
+---
+
+## 🧠 Types of Hybrid Connectivity
+| Type | Description |
+|-----------|-------|
+| Site-to-Site VPN | Network-to-network tunnel |
+| Point-to-Site VPN | User-to-network |
+| ExpressRoute (Azure) | Private dedicated connection |
+| Direct Connect (AWS) | Private dedicated connection |
+| Interconnect (GCP) | Private dedicated connection |
+
+---
+
+### 🧪 Lab Step 1 — Simulate On-Prem Network
 
 We simulate on-prem using a local CIDR:
 
 192.168.0.0/16
-🌐 Lab Step 2 — Azure VPN Gateway (Concept + CLI)
+
+### 🌐 Lab Step 2 — Azure VPN Gateway (Concept + CLI)
 az network public-ip create \
   --name vpn-pip \
   --resource-group clab-network-rg \
   --sku Standard
+
 az network vnet-gateway create \
   --name clab-vpn-gateway \
   --resource-group clab-network-rg \
@@ -70,58 +84,68 @@ az network vnet-gateway create \
   --vpn-type RouteBased \
   --sku VpnGw1 \
   --public-ip-address vpn-pip
-🔗 Create Local Network Gateway (On-Prem)
+
+### 🔗 Create Local Network Gateway (On-Prem)
 az network local-gateway create \
   --name onprem-gateway \
   --resource-group clab-network-rg \
   --gateway-ip-address <ONPREM_PUBLIC_IP> \
   --local-address-prefixes 192.168.0.0/16
-🔐 Create VPN Connection
+
+### 🔐 Create VPN Connection
 az network vpn-connection create \
   --name clab-vpn-connection \
   --resource-group clab-network-rg \
   --vnet-gateway1 clab-vpn-gateway \
   --local-gateway2 onprem-gateway \
   --shared-key MySecureKey123
-🧪 Lab Step 3 — AWS Site-to-Site VPN (Concept)
+
+### 🧪 Lab Step 3 — AWS Site-to-Site VPN (Concept)
 Key Components:
 
-Virtual Private Gateway (VGW)
+— Virtual Private Gateway (VGW)
 
-Customer Gateway
+— Customer Gateway
 
-VPN Connection
+— VPN Connection
 
 aws ec2 create-vpn-gateway \
   --type ipsec.1
+
 aws ec2 create-customer-gateway \
   --type ipsec.1 \
   --public-ip <ONPREM_PUBLIC_IP> \
   --bgp-asn 65000
+
 aws ec2 create-vpn-connection \
   --type ipsec.1 \
   --customer-gateway-id <CGW_ID> \
   --vpn-gateway-id <VGW_ID>
-🧪 Lab Step 4 — GCP Cloud VPN (Concept)
+
+### 🧪 Lab Step 4 — GCP Cloud VPN (Concept)
 gcloud compute vpn-gateways create clab-vpn-gateway \
   --network hub-vpc \
   --region us-central1
+
 gcloud compute vpn-tunnels create clab-tunnel \
   --peer-address <ONPREM_PUBLIC_IP> \
   --shared-secret MySecureKey123 \
   --region us-central1 \
   --vpn-gateway clab-vpn-gateway
-🧠 Key Concept — Routing in Hybrid
+
+### 🧠 Key Concept — Routing in Hybrid
 
 Traffic must know where to go:
 
 On-Prem → Cloud → Spoke → Application
 Cloud → On-Prem → Data Center
-🔥 Enterprise Connectivity (VERY IMPORTANT)
-Cloud	Private Connectivity
-Azure	ExpressRoute
-AWS	Direct Connect
-GCP	Interconnect
+
+### 🔥 Enterprise Connectivity (VERY IMPORTANT)
+| Cloud | Private Connectivity |
+|-----------|-------|
+| Azure | ExpressRoute |
+| AWS | Direct Connect |
+| GCP | Interconnect |
 
 👉 Used for:
 
@@ -131,8 +155,17 @@ Low latency
 
 Compliance requirements
 
-🧪 Lab Step 5 — Simulate Routing Flow
-🚨 Key Concept — Failover
+### 🧪 Lab Step 5 — Simulate Routing Flow
+
+```mermaid
+flowchart LR
+    A[On-Prem] --> B[VPN]
+    B --> C[Hub]
+    C --> D[Firewall]
+    D --> E[Spoke]
+```
+
+### 🚨 Key Concept — Failover
 
 Enterprise design includes:
 
@@ -142,7 +175,7 @@ Backup: VPN
 
 👉 Always design redundancy
 
-🧪 Lab Step 6 — Validation
+### 🧪 Lab Step 6 — Validation
 
 Check Azure:
 
@@ -157,7 +190,10 @@ aws ec2 describe-vpn-connections
 Check GCP:
 
 gcloud compute vpn-tunnels list
-🚨 Troubleshooting
+
+---
+
+### 🚨 Troubleshooting
 VPN not connecting
 
 Check shared key
@@ -174,7 +210,9 @@ Check firewall rules
 
 Check CIDR overlap
 
-✅ Validation Checklist
+---
+
+### ✅ Validation Checklist
 
  On-prem network defined
 
@@ -188,7 +226,9 @@ Check CIDR overlap
 
  Failover concept understood
 
-🎯 Key Takeaways
+---
+
+### 🎯 Key Takeaways
 
 Hybrid = extending enterprise network securely
 
@@ -200,7 +240,9 @@ Routing = most critical component
 
 Redundancy = mandatory in real environments
 
-🚀 Next Step
+---
+
+### 🚀 Next Step
 
 ➡️ Day 06 — Load Balancers & Application Protection
 
