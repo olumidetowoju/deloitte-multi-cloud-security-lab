@@ -180,57 +180,44 @@ This is enterprise-grade control.
 
 ## ✅ Validation Checklist
 
- Hub VNet created
-
- Spoke VNet created
-
- Peering configured
-
- Azure Firewall deployed
-
- Route table created
-
- Traffic forced through firewall
-
- VM deployed and reachable
+- Hub VNet created
+- Spoke VNet created
+- Peering configured
+- Azure Firewall deployed
+- Route table created
+- Traffic forced through firewall
+- VM deployed and reachable
 
 ---
 
 ## 🚨 Troubleshooting
 
-Peering not working
-az network vnet peering list -g clab-network-rg
-Firewall not getting IP
+Peering not working:
+- az network vnet peering list -g clab-network-rg
+
+Firewall not getting IP:
 
 Check:
+- az network firewall show -g clab-network-rg -n clab-firewall
 
-az network firewall show -g clab-network-rg -n clab-firewall
-Route not applied
+Route not applied:
 
 Check:
-
-az network route-table show -g clab-network-rg -n spoke-rt
-VM cannot access internet
-
-Check NSG rules
-
-Check route table association
-
-Check firewall config
+- az network route-table show -g clab-network-rg -n spoke-rt
+- VM cannot access internet
+- Check NSG rules
+- Check route table association
+- Check firewall config
 
 ---
 
 ## 🎯 Key Takeaways
 
-Hub-and-spoke = centralized security model
-
-Azure Firewall = traffic inspection layer
-
-Route tables = traffic control mechanism
-
-Peering = network connectivity foundation
-
-Forced tunneling = enterprise enforcement
+- Hub-and-spoke = centralized security model
+- Azure Firewall = traffic inspection layer
+- Route tables = traffic control mechanism
+- Peering = network connectivity foundation
+- Forced tunneling = enterprise enforcement
 
 ---
 
@@ -240,10 +227,7 @@ Forced tunneling = enterprise enforcement
 
 You will:
 
-Build AWS equivalent architecture
-
-Use Transit Gateway
-
-Implement centralized routing
-
-Compare Azure vs AWS designs
+- Build AWS equivalent architecture
+- Use Transit Gateway
+- Implement centralized routing
+- Compare Azure vs AWS designs
