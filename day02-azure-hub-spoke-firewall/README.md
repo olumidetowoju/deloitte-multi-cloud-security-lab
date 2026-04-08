@@ -14,7 +14,7 @@ By the end of this lab, you will:
 - Force traffic through the firewall
 - Validate traffic flow
 
----
+--- 
 
 ## 🧠 Concept (Think Like an Architect)
 
@@ -36,31 +36,43 @@ flowchart TD
     B --> C[Hub VNet]
     C --> D[Spoke VNet]
     D --> E[Virtual Machine]
-🧱 Lab Architecture Design
-Component	Value
-Hub VNet	10.0.0.0/16
-Spoke VNet	10.1.0.0/16
-Firewall Subnet	AzureFirewallSubnet
-Region	eastus
-🧪 Lab Step 1 — Create Resource Group
+```
+
+---
+
+## 🧱 Lab Architecture Design
+
+| Component | Value |
+|-----------|-------|
+| Hub VNet | 10.0.0.0/16 |
+| Spoke VNet | 10.1.0.0/16 |
+| Firewall Subnet | AzureFirewallSubnet |
+| Region | eastus |
+
+---
+
+### 🧪 Lab Step 1 — Create Resource Group
 az group create \
   --name clab-network-rg \
   --location eastus
-🌐 Lab Step 2 — Create Hub VNet
+
+### 🌐 Lab Step 2 — Create Hub VNet
 az network vnet create \
   --name hub-vnet \
   --resource-group clab-network-rg \
   --address-prefix 10.0.0.0/16 \
   --subnet-name default \
   --subnet-prefix 10.0.1.0/24
-🌐 Lab Step 3 — Create Spoke VNet
+
+### 🌐 Lab Step 3 — Create Spoke VNet
 az network vnet create \
   --name spoke-vnet \
   --resource-group clab-network-rg \
   --address-prefix 10.1.0.0/16 \
   --subnet-name default \
   --subnet-prefix 10.1.1.0/24
-🔗 Lab Step 4 — VNet Peering
+
+### 🔗 Lab Step 4 — VNet Peering
 Hub → Spoke
 az network vnet peering create \
   --name hub-to-spoke \
@@ -75,13 +87,15 @@ az network vnet peering create \
   --vnet-name spoke-vnet \
   --remote-vnet hub-vnet \
   --allow-vnet-access
-🔥 Lab Step 5 — Create Azure Firewall Subnet
+
+### 🔥 Lab Step 5 — Create Azure Firewall Subnet
 az network vnet subnet create \
   --resource-group clab-network-rg \
   --vnet-name hub-vnet \
   --name AzureFirewallSubnet \
   --address-prefix 10.0.2.0/24
-🔥 Lab Step 6 — Deploy Azure Firewall
+
+### 🔥 Lab Step 6 — Deploy Azure Firewall
 Create Public IP
 az network public-ip create \
   --name fw-pip \
@@ -98,10 +112,12 @@ az network firewall ip-config create \
   --public-ip-address fw-pip \
   --resource-group clab-network-rg \
   --vnet-name hub-vnet
-🚦 Lab Step 7 — Create Route Table
+
+### 🚦 Lab Step 7 — Create Route Table
 az network route-table create \
   --name spoke-rt \
   --resource-group clab-network-rg
+
 ➡️ Add Default Route to Firewall
 
 First get firewall private IP:
@@ -127,7 +143,8 @@ az network vnet subnet update \
   --vnet-name spoke-vnet \
   --name default \
   --route-table spoke-rt
-🧪 Lab Step 8 — Deploy Test VM (Spoke)
+
+### 🧪 Lab Step 8 — Deploy Test VM (Spoke)
 az vm create \
   --resource-group clab-network-rg \
   --name test-vm \
@@ -136,7 +153,8 @@ az vm create \
   --image Ubuntu2204 \
   --admin-username azureuser \
   --generate-ssh-keys
-🧪 Lab Step 9 — Test Traffic Flow
+
+### 🧪 Lab Step 9 — Test Traffic Flow
 
 SSH into VM:
 
@@ -148,7 +166,9 @@ curl ifconfig.me
 
 👉 Traffic should flow through firewall (once rules are configured in later labs)
 
-🚨 Key Concept — Forced Tunneling
+---
+
+## 🚨 Key Concept — Forced Tunneling
 
 👉 The route table ensures:
 
@@ -156,7 +176,9 @@ ALL TRAFFIC → FIREWALL → INTERNET
 
 This is enterprise-grade control.
 
-✅ Validation Checklist
+---
+
+## ✅ Validation Checklist
 
  Hub VNet created
 
@@ -172,7 +194,10 @@ This is enterprise-grade control.
 
  VM deployed and reachable
 
-🚨 Troubleshooting
+---
+
+## 🚨 Troubleshooting
+
 Peering not working
 az network vnet peering list -g clab-network-rg
 Firewall not getting IP
@@ -193,7 +218,9 @@ Check route table association
 
 Check firewall config
 
-🎯 Key Takeaways
+---
+
+## 🎯 Key Takeaways
 
 Hub-and-spoke = centralized security model
 
@@ -205,7 +232,9 @@ Peering = network connectivity foundation
 
 Forced tunneling = enterprise enforcement
 
-🚀 Next Step
+---
+
+## 🚀 Next Step
 
 ➡️ Day 03 — AWS Transit Gateway + Centralized Inspection
 
