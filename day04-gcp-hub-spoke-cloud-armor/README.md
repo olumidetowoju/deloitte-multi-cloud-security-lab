@@ -161,54 +161,40 @@ gcloud compute ssh spoke-vm --zone us-central1-a
 ---
 
 ## 🚨 Troubleshooting
-Peering not working
-gcloud compute networks peerings list
-Firewall blocking traffic
+- Peering not working
+- gcloud compute networks peerings list
+- Firewall blocking traffic
 
 Check rules:
-
-gcloud compute firewall-rules list
-VM not accessible
+- gcloud compute firewall-rules list
+- VM not accessible
 
 Check:
-
-Firewall rules
-
-Tags
-
-Network
+- Firewall rules
+- Tags
+- Network
 
 ---
 
 ## ✅ Validation Checklist
 
- Hub VPC created
-
- Spoke VPC created
-
- Peering configured
-
- Firewall rules created
-
- VM deployed
-
- Cloud Armor policy created
-
- Connectivity verified
+- Hub VPC created
+- Spoke VPC created
+- Peering configured
+- Firewall rules created
+- VM deployed
+- Cloud Armor policy created
+- Connectivity verified
 
 ---
 
 ## 🎯 Key Takeaways
 
-GCP separates edge and network security clearly
-
-Cloud Armor = WAF at edge
-
-Firewall rules = internal segmentation
-
-Peering = core connectivity
-
-Simpler than AWS, more modular than Azure
+- GCP separates edge and network security clearly
+- Cloud Armor = WAF at edge
+- Firewall rules = internal segmentation
+- Peering = core connectivity
+- Simpler than AWS, more modular than Azure
 
 ---
 
@@ -218,8 +204,6 @@ Simpler than AWS, more modular than Azure
 
 You will:
 
-Connect on-prem to cloud
-
-Simulate enterprise hybrid architecture
-
-Design secure tunnels across clouds
+- Connect on-prem to cloud
+- Simulate enterprise hybrid architecture
+- Design secure tunnels across clouds
