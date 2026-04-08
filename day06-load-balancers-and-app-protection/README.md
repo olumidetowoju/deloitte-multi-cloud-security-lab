@@ -179,55 +179,37 @@ OWASP Top 10
 ---
 
 ## 🚨 Troubleshooting
-LB not responding
-
-Check backend health
-
-Check NSG / Security Groups
-
-WAF blocking traffic
-
-Review rules
-
-Switch to detection mode
-
-Backend unhealthy
-
-Check health probes
-
-Check ports
+- LB not responding
+- Check backend health
+- Check NSG / Security Groups
+- WAF blocking traffic
+- Review rules
+- Switch to detection mode
+- Backend unhealthy
+- Check health probes
+- Check ports
 
 ---
 
 ## ✅ Validation Checklist
 
- Azure App Gateway deployed
-
- WAF enabled
-
- AWS ALB created
-
- AWS NLB created
-
- GCP LB configured
-
- Traffic flows correctly
-
- WAF protection understood
+- Azure App Gateway deployed
+- WAF enabled
+- AWS ALB created
+- AWS NLB created
+- GCP LB configured
+- Traffic flows correctly
+- WAF protection understood
 
 ---
 
 ## 🎯 Key Takeaways
 
-Load balancers control traffic distribution
-
-WAF protects application layer
-
-L7 = intelligent routing
-
-Defense-in-depth is critical
-
-Multi-cloud implementations differ but follow same principles
+- Load balancers control traffic distribution
+- WAF protects application layer
+- L7 = intelligent routing
+- Defense-in-depth is critical
+- Multi-cloud implementations differ but follow same principles
 
 ---
 
@@ -237,8 +219,6 @@ Multi-cloud implementations differ but follow same principles
 
 You will:
 
-Integrate enterprise firewalls
-
-Understand Panorama / centralized control
-
-Compare vendor vs cloud-native security
+- Integrate enterprise firewalls
+- Understand Panorama / centralized control
+- Compare vendor vs cloud-native security
