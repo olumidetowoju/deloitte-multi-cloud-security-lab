@@ -1,4 +1,16 @@
 
+# 📘 Day 10 — Operations, Incident Response & Capstone
+
+---
+
+## 🎯 Objective
+
+Operate, secure, and troubleshoot a **multi-cloud enterprise environment**, and deliver a **capstone architecture** aligned to real-world consulting scenarios.
+
+By the end of this lab, you will:
+- Understand operational workflows
+- Perform incident response
+- Build a troubleshooting runbook
 - Design a full multi-cloud architecture
 - Present your solution like a consultant
 
