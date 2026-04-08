@@ -194,51 +194,35 @@ gcloud compute vpn-tunnels list
 ---
 
 ### 🚨 Troubleshooting
-VPN not connecting
-
-Check shared key
-
-Check IP mismatch
-
-Check routing tables
-
-No traffic flow
-
-Verify route propagation
-
-Check firewall rules
-
-Check CIDR overlap
+- VPN not connecting
+- Check shared key
+- Check IP mismatch
+- Check routing tables
+- No traffic flow
+- Verify route propagation
+- Check firewall rules
+- Check CIDR overlap
 
 ---
 
 ### ✅ Validation Checklist
 
- On-prem network defined
-
- Azure VPN configured
-
- AWS VPN configured
-
- GCP VPN configured
-
- Routing understood
-
- Failover concept understood
+- On-prem network defined
+- Azure VPN configured
+- AWS VPN configured
+- GCP VPN configured
+- Routing understood
+- Failover concept understood
 
 ---
 
 ### 🎯 Key Takeaways
 
-Hybrid = extending enterprise network securely
-
-VPN = encrypted tunnel over internet
-
-Dedicated circuits = enterprise-grade connectivity
-
-Routing = most critical component
-
-Redundancy = mandatory in real environments
+- Hybrid = extending enterprise network securely
+- VPN = encrypted tunnel over internet
+- Dedicated circuits = enterprise-grade connectivity
+- Routing = most critical component
+- Redundancy = mandatory in real environments
 
 ---
 
@@ -248,10 +232,7 @@ Redundancy = mandatory in real environments
 
 You will:
 
-Deploy Azure Application Gateway
-
-Configure AWS ALB/NLB
-
-Implement GCP Load Balancing
-
-Add WAF protection
+- Deploy Azure Application Gateway
+- Configure AWS ALB/NLB
+- Implement GCP Load Balancing
+- Add WAF protection
