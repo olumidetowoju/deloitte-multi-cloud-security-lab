@@ -39,14 +39,24 @@ flowchart TD
     C --> D[Hub VPC]
     D --> E[Spoke VPC]
     E --> F[Application VM]
-🧱 Lab Architecture Design
-Component	CIDR
-Hub VPC	10.20.0.0/16
-Spoke VPC	10.21.0.0/16
-Region	us-central1
-🧪 Lab Step 1 — Set Project
+```
+
+---
+
+## 🧱 Lab Architecture Design
+
+| Component | CIDR |
+|-----------|-------|
+| Hub VPC | 10.20.0.0/16 |
+| Spoke VPC | 10.21.0.0/16 |
+| Region | us-central1 |
+
+---
+
+### 🧪 Lab Step 1 — Set Project
 gcloud config set project <YOUR_PROJECT_ID>
-🌐 Lab Step 2 — Create Hub VPC
+
+### 🌐 Lab Step 2 — Create Hub VPC
 gcloud compute networks create hub-vpc \
   --subnet-mode=custom
 
@@ -56,23 +66,27 @@ gcloud compute networks subnets create hub-subnet \
   --network hub-vpc \
   --range 10.20.1.0/24 \
   --region us-central1
-🌐 Lab Step 3 — Create Spoke VPC
+
+### 🌐 Lab Step 3 — Create Spoke VPC
 gcloud compute networks create spoke-vpc \
   --subnet-mode=custom
 gcloud compute networks subnets create spoke-subnet \
   --network spoke-vpc \
   --range 10.21.1.0/24 \
   --region us-central1
-🔗 Lab Step 4 — VPC Peering
+
+### 🔗 Lab Step 4 — VPC Peering
 gcloud compute networks peerings create hub-to-spoke \
   --network hub-vpc \
   --peer-network spoke-vpc \
   --auto-create-routes
+
 gcloud compute networks peerings create spoke-to-hub \
   --network spoke-vpc \
   --peer-network hub-vpc \
   --auto-create-routes
-🔥 Lab Step 5 — Create Firewall Rules
+
+### 🔥 Lab Step 5 — Create Firewall Rules
 
 Allow internal traffic:
 
@@ -87,12 +101,14 @@ gcloud compute firewall-rules create allow-ssh \
   --network hub-vpc \
   --allow tcp:22 \
   --source-ranges 0.0.0.0/0
-🧪 Lab Step 6 — Deploy VM in Spoke
+
+### 🧪 Lab Step 6 — Deploy VM in Spoke
 gcloud compute instances create spoke-vm \
   --zone us-central1-a \
   --machine-type e2-micro \
   --subnet spoke-subnet
-🌐 Lab Step 7 — Create Load Balancer (Conceptual)
+
+### 🌐 Lab Step 7 — Create Load Balancer (Conceptual)
 
 👉 In real environments, use:
 
@@ -104,33 +120,47 @@ Instance group
 
 We simulate conceptually for this lab.
 
-🛡️ Lab Step 8 — Create Cloud Armor Policy
+### 🛡️ Lab Step 8 — Create Cloud Armor Policy
 gcloud compute security-policies create clab-policy
-Block Example IP
+
+#### Block Example IP
 gcloud compute security-policies rules create 1000 \
   --security-policy clab-policy \
   --expression "origin.ip == '1.2.3.4'" \
   --action deny-403
-🧠 Key Concept — Edge vs Network Security
-Layer	Tool
-Edge (Internet)	Cloud Armor
-Network (Internal)	Firewall Rules
+
+---
+
+## 🧠 Key Concept — Edge vs Network Security
+| Layer | Tool |
+|-----------|-------|
+| Edge (Internet) | Cloud Armor |
+| Network (Internal) | Firewall Rules |
 
 👉 GCP splits responsibilities clearly.
 
-🔥 Multi-Cloud Comparison (VERY IMPORTANT)
-Feature	Azure	AWS	GCP
-Hub Model	Native	TGW	Peering/NCC
-Firewall	Azure Firewall	Network Firewall	VPC Rules
-WAF	App Gateway	WAF	Cloud Armor
-Routing	Auto	Manual	Semi-auto
-🧪 Lab Step 9 — Validate Connectivity
+---
+
+## 🔥 Multi-Cloud Comparison (VERY IMPORTANT)
+| Feature | Azure | AWS | GCP |
+|-----------|-------|-------|-------|
+| Hub Model | Native | TGW | Peering/NCC |
+| Firewall | Azure Firewall | Network Firewall | VPC Rules |
+| WAF (Internal) | App Gateway | WAF | Cloud Armor |
+| Routing | Auto | Manual | Semi-auto |
+
+---
+
+### 🧪 Lab Step 9 — Validate Connectivity
 gcloud compute instances list
 
 SSH:
 
 gcloud compute ssh spoke-vm --zone us-central1-a
-🚨 Troubleshooting
+
+---
+
+## 🚨 Troubleshooting
 Peering not working
 gcloud compute networks peerings list
 Firewall blocking traffic
@@ -148,7 +178,9 @@ Tags
 
 Network
 
-✅ Validation Checklist
+---
+
+## ✅ Validation Checklist
 
  Hub VPC created
 
@@ -164,7 +196,9 @@ Network
 
  Connectivity verified
 
-🎯 Key Takeaways
+---
+
+## 🎯 Key Takeaways
 
 GCP separates edge and network security clearly
 
@@ -176,7 +210,9 @@ Peering = core connectivity
 
 Simpler than AWS, more modular than Azure
 
-🚀 Next Step
+---
+
+## 🚀 Next Step
 
 ➡️ Day 05 — Hybrid Connectivity (VPN, ExpressRoute, Direct Connect)
 
