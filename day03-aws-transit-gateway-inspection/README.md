@@ -161,54 +161,41 @@ aws ec2 describe-instances
 
 ## 🚨 Troubleshooting
 
-No connectivity
+No connectivity:
 
 Check:
+- aws ec2 describe-route-tables
+- TGW attachment issues
+- aws ec2 describe-transit-gateway-attachments
 
-aws ec2 describe-route-tables
-TGW attachment issues
-aws ec2 describe-transit-gateway-attachments
-Instance unreachable
+Instance unreachable:
 
 Check:
-
-Security Groups
-
-NACLs
-
-Route Tables
+- Security Groups
+- NACLs
+- Route Tables
 
 ---
 
 ## ✅ Validation Checklist
 
- VPCs created
-
- Transit Gateway deployed
-
- Attachments created
-
- Subnets created
-
- Routes configured
-
- EC2 instance deployed
-
- Connectivity verified
+- VPCs created
+- Transit Gateway deployed
+- Attachments created
+- Subnets created
+- Routes configured
+- EC2 instance deployed
+- Connectivity verified
 
 ---
 
 ## 🎯 Key Takeaways
 
-AWS networking = explicit control
-
-Transit Gateway = central routing hub
-
-Inspection VPC = security layer
-
-Routing tables = critical control point
-
-More complex than Azure → more flexible
+- AWS networking = explicit control
+- Transit Gateway = central routing hub
+- Inspection VPC = security layer
+- Routing tables = critical control point
+- More complex than Azure → more flexible
 
 ---
 
@@ -218,8 +205,6 @@ More complex than Azure → more flexible
 
 You will:
 
-Build GCP networking
-
-Implement edge protection
-
-Compare all 3 clouds
+- Build GCP networking
+- Implement edge protection
+- Compare all 3 clouds
