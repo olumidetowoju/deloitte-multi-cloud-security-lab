@@ -194,54 +194,41 @@ git push
 
 ## ✅ Validation Checklist
 
- Terraform installed and working
-
- Azure CLI authenticated
-
- AWS CLI authenticated
-
- GCP CLI authenticated
-
- IP addressing plan defined
-
- Architecture diagram created
-
- Changes pushed to GitHub
+ - Terraform installed and working
+ - Azure CLI authenticated
+ - AWS CLI authenticated
+ - GCP CLI authenticated
+ - IP addressing plan defined
+ - Architecture diagram created
+ - Changes pushed to GitHub
 
 ---
 
 ## 🚨 Troubleshooting
 
-Terraform not found
-terraform -v
-
-Reinstall if needed.
-
-Azure login issues
-az account show
-AWS authentication failure
-aws sts get-caller-identity
-GCP issues
+Terraform not found:
+- terraform -v
+- Reinstall if needed
+- Azure login issues
+- az account show
+- AWS authentication failure
+- aws sts get-caller-identity
+- GCP issues
 
 Ensure:
 
-Project exists
-
-Terms accepted
+- Project exists
+- Terms accepted
 
 ---
 
 ## 🎯 Key Takeaways
 
-Network security = traffic control + inspection
-
-Identity = true security boundary
-
-Hub-and-spoke = centralized governance
-
-Terraform = repeatable infrastructure
-
-Documentation = engineering maturity
+- Network security = traffic control + inspection
+- Identity = true security boundary
+- Hub-and-spoke = centralized governance
+- Terraform = repeatable infrastructure
+- Documentation = engineering maturity
 
 ---
 
@@ -251,10 +238,7 @@ Documentation = engineering maturity
 
 You will:
 
-Build a hub-and-spoke network
-
-Deploy Azure Firewall
-
-Configure routing (UDRs)
-
-Test secure traffic flow
+- Build a hub-and-spoke network
+- Deploy Azure Firewall
+- Configure routing (UDRs)
+- Test secure traffic flow
