@@ -49,7 +49,12 @@ flowchart TD
     B --> C[Azure]
     B --> D[AWS]
     B --> E[GCP]
-🧱 Project Structure
+```
+
+---
+
+## 🧱 Project Structure
+```
 terraform/
 ├── main.tf
 ├── variables.tf
@@ -60,13 +65,18 @@ terraform/
     ├── azure-network/
     ├── aws-network/
     └── gcp-network/
-🧪 Lab Step 1 — Create Terraform Directory
+```
+
+---
+
+### 🧪 Lab Step 1 — Create Terraform Directory
 mkdir -p terraform/modules/azure-network \
 terraform/modules/aws-network \
 terraform/modules/gcp-network
 
 cd terraform
-🧪 Lab Step 2 — Create Providers
+
+### 🧪 Lab Step 2 — Create Providers
 nano providers.tf
 
 Paste:
@@ -83,8 +93,10 @@ provider "google" {
   project = "<YOUR_PROJECT_ID>"
   region  = "us-central1"
 }
-🧪 Lab Step 3 — Create Azure Module
+
+### 🧪 Lab Step 3 — Create Azure Module
 nano modules/azure-network/main.tf
+
 resource "azurerm_resource_group" "rg" {
   name     = "clab-tf-rg"
   location = "East US"
@@ -96,19 +108,25 @@ resource "azurerm_virtual_network" "vnet" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 }
-🧪 Lab Step 4 — Create AWS Module
+
+### 🧪 Lab Step 4 — Create AWS Module
 nano modules/aws-network/main.tf
+
 resource "aws_vpc" "vpc" {
   cidr_block = "10.10.0.0/16"
 }
-🧪 Lab Step 5 — Create GCP Module
+
+### 🧪 Lab Step 5 — Create GCP Module
 nano modules/gcp-network/main.tf
+
 resource "google_compute_network" "vpc" {
   name                    = "clab-gcp-vpc"
   auto_create_subnetworks = false
 }
-🧪 Lab Step 6 — Root Module
+
+### 🧪 Lab Step 6 — Root Module
 nano main.tf
+
 module "azure_network" {
   source = "./modules/azure-network"
 }
@@ -120,17 +138,21 @@ module "aws_network" {
 module "gcp_network" {
   source = "./modules/gcp-network"
 }
-🧪 Lab Step 7 — Initialize Terraform
+
+### 🧪 Lab Step 7 — Initialize Terraform
 terraform init
-🧪 Lab Step 8 — Plan Deployment
+
+### 🧪 Lab Step 8 — Plan Deployment
 terraform plan
-🧪 Lab Step 9 — Apply
+
+### 🧪 Lab Step 9 — Apply
 terraform apply
 
 Type:
 
 yes
-🧠 Key Concept — State Management
+
+### 🧠 Key Concept — State Management
 
 Terraform keeps track of infrastructure using:
 
@@ -138,7 +160,7 @@ terraform.tfstate
 
 👉 This is critical — never lose state in production
 
-🔥 Best Practice — Remote State (Concept)
+### 🔥 Best Practice — Remote State (Concept)
 
 Use:
 
@@ -148,7 +170,7 @@ GCP Storage
 
 👉 Prevents state loss and enables team collaboration
 
-🧠 Module Reusability
+### 🧠 Module Reusability
 
 Instead of rewriting:
 
@@ -160,41 +182,56 @@ module "network"
 
 👉 This is enterprise automation
 
-🧪 Lab Step 10 — Destroy Resources
+### 🧪 Lab Step 10 — Destroy Resources
 terraform destroy
 
 👉 Always clean up to avoid cost
 
-🚨 Troubleshooting
-Terraform init fails
+---
+
+## 🚨 Troubleshooting
+Terraform init fails:
 Check provider versions
 Check internet connectivity
-Auth errors
+
+Auth errors:
 Verify Azure CLI login
 Verify AWS credentials
 Verify GCP auth
-Plan fails
+
+Plan fails:
 Check syntax
 Validate variables
-✅ Validation Checklist
- Terraform initialized
- Modules created
- Multi-cloud deployment works
- Plan successful
- Apply successful
- Destroy tested
-🎯 Key Takeaways
-Terraform = automation engine
-Modules = reusable architecture
-State = source of truth
-Multi-cloud = unified deployment
-IaC = required for modern engineering
-🚀 Next Step
+
+---
+
+## ✅ Validation Checklist
+
+- Terraform initialized
+- Modules created
+- Multi-cloud deployment works
+- Plan successful
+- Apply successful
+- Destroy tested
+
+---
+
+## 🎯 Key Takeaways
+
+- Terraform = automation engine
+- Modules = reusable architecture
+- State = source of truth
+- Multi-cloud = unified deployment
+- IaC = required for modern engineering
+
+---
+
+## 🚀 Next Step
 
 ➡️ Day 09 — CI/CD (GitHub Actions + Azure DevOps)
 
 You will:
 
-Automate Terraform deployments
-Build pipelines
-Integrate security into CI/CD
+- Automate Terraform deployments
+- Build pipelines
+- Integrate security into CI/CD
